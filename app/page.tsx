@@ -79,6 +79,8 @@ export default function Home() {
     { size: number; top: number; duration: number; delay: number }[]
   >([]);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const generated = Array.from({ length: 50 }).map(() => {
       const size = Math.floor(Math.random() * 30) + 10;
@@ -89,28 +91,36 @@ export default function Home() {
     });
     setBlocks(generated);
   }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: formData.get("name"),
-        email: formData.get("email"),
-        message: formData.get("message"),
-      }),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
 
-    const data = await res.json();
-    if (data.success) {
-      alert("Message sent successfully!");
-      form.reset();
-    } else {
-      alert("Error: " + data.error);
+      const data = await res.json();
+      if (data.success) {
+        alert("Message sent successfully!");
+        form.reset();
+      } else {
+        alert("Error: " + data.error);
+      }
+    } catch (err) {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -246,7 +256,10 @@ export default function Home() {
           Why You Should Hire Me?
         </h2>
         <p className="text-gray-700 max-w-lg">
-          
+        I Have Two Years Of Experience In Web Development Which Is More Than Most Freshman In College.
+        I Have Worked On Several Projects, That Demonstrate My Ability To Create Functional And Visually Appealing Websites.
+        I Am Proficient In Typescript And Popular Frameworks Like React And Next.js. My Passion For Coding Drives Me To Continuously
+        Learn And Stay Updated With The Latest Industry Trends. I Am A Quick Learner, And I Thrive In Dynamic Environments Where I Can Constantly Learn.
         </p>
       </div>
     </div>
@@ -377,11 +390,20 @@ export default function Home() {
           </div>
           <motion.button
             type="submit"
-            className="btn btn-primary w-full mt-6"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="btn btn-primary w-full mt-6 flex items-center justify-center disabled:opacity-50"
+            disabled={loading}
+            whileHover={{ scale: loading ? 1 : 1.05 }}
+            whileTap={{ scale: loading ? 1 : 0.95 }}
           >
-            Send Message
+            {loading ? (
+              <motion.div
+                className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              />
+            ) : (
+              "Send Message"
+            )}
           </motion.button>
         </form>
       </section>
