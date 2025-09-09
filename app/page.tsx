@@ -158,7 +158,7 @@ export default function Home() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 0.3 }}
     >
-      &quot;To Accomplishe Your Dreams You Have To Wake Up To Reality In Other Words It&apos;s Not Going To Happen Bro 😭🥀&quot;
+      &quot;To Accomplish Your Dreams You Have To Wake Up To Reality In Other Words It&apos;s Not Going To Happen Bro 😭🥀&quot;
     </motion.p>
 
     {/* Button Group */}
@@ -168,15 +168,6 @@ export default function Home() {
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 1, delay: 0.6 }}
 >
-  <motion.button
-    onClick={handleScrollContact}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    className="px-6 py-3 rounded-md bg-purple-500 text-white font-semibold shadow-xl hover:bg-purple-600 transition 
-               hover:shadow-2xl hover:shadow-purple-400/40"
-  >
-    Get In Touch
-  </motion.button>
 
   <motion.button
     onClick={handleScrollAboutMe}
@@ -197,53 +188,19 @@ export default function Home() {
   >
     Tech Stack
   </motion.button>
+
+  <motion.button
+    onClick={handleScrollContact}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="px-6 py-3 rounded-md bg-purple-500 text-white font-semibold shadow-xl hover:bg-purple-600 transition 
+               hover:shadow-2xl hover:shadow-purple-400/40"
+  >
+    Get In Touch
+  </motion.button>
 </motion.div>
   </div>
 </section>
-
-      {/* TECH STACK */}
-      <section
-        ref={techRef}
-        className="w-full min-h-screen bg-white flex flex-col items-center justify-center px-6 py-20"
-      >
-        <h2 className="text-4xl font-bold text-gray-900 mb-12">
-          Current Tech Stack — <span className="text-purple-600">AIMNT</span>
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl w-full">
-          {[
-            {
-              icon: <Brain className="w-12 h-12 text-purple-600 mb-4" />,
-              title: "AI",
-              desc: "Leveraging AI to build intelligent, adaptive solutions.",
-            },
-            {
-              icon: <Database className="w-12 h-12 text-green-600 mb-4" />,
-              title: "MongoDB",
-              desc: "A powerful NoSQL database for scalable applications.",
-            },
-            {
-              icon: <Globe className="w-12 h-12 text-blue-600 mb-4" />,
-              title: "Next.js",
-              desc: "React framework for fast, modern web apps.",
-            },
-            {
-              icon: <Paintbrush className="w-12 h-12 text-cyan-600 mb-4" />,
-              title: "Tailwind CSS",
-              desc: "Utility-first styling for sleek and responsive designs.",
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center p-6 rounded-2xl shadow-lg bg-gray-50"
-            >
-              {item.icon}
-              <h3 className="text-xl font-semibold text-black">{item.title}</h3>
-              <p className="text-gray-600 text-center mt-2">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ABOUT ME */}
 <section
@@ -296,7 +253,49 @@ export default function Home() {
   </div>
 </section>
 
+        {/* TECH STACK */}
+      <section
+        ref={techRef}
+        className="w-full min-h-screen bg-white flex flex-col items-center justify-center px-6 py-20"
+      >
+        <h2 className="text-4xl font-bold text-gray-900 mb-12">
+          Current Tech Stack <span className="text-purple-600 block text-center mt-2">AIMNT</span>
+        </h2>
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl w-full">
+          {[
+            {
+              icon: <Brain className="w-12 h-12 text-purple-600 mb-4" />,
+              title: "AI",
+              desc: "Leveraging AI to build intelligent, adaptive solutions.",
+            },
+            {
+              icon: <Database className="w-12 h-12 text-green-600 mb-4" />,
+              title: "MongoDB",
+              desc: "A powerful NoSQL database for scalable applications.",
+            },
+            {
+              icon: <Globe className="w-12 h-12 text-blue-600 mb-4" />,
+              title: "Next.js",
+              desc: "React framework for fast, modern web apps.",
+            },
+            {
+              icon: <Paintbrush className="w-12 h-12 text-cyan-600 mb-4" />,
+              title: "Tailwind CSS",
+              desc: "Utility-first styling for sleek and responsive designs.",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center p-6 rounded-2xl shadow-lg bg-gray-50"
+            >
+              {item.icon}
+              <h3 className="text-xl font-semibold text-black">{item.title}</h3>
+              <p className="text-gray-600 text-center mt-2">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* CONTACT */}
       <section

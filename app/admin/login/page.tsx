@@ -54,7 +54,6 @@ export default function AdminLogin() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
         />
-
         <motion.button
           type="submit"
           className="btn btn-primary w-full"
@@ -66,6 +65,18 @@ export default function AdminLogin() {
         >
           Login
         </motion.button>
+        
+        <motion.a
+          className="text-blue-400 w-40"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          href="/"
+        >
+          Back To Home?
+        </motion.a>
       </form>
     </div>
   );
