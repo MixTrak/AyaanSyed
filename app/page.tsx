@@ -168,7 +168,7 @@ export default function Home() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 0.3 }}
     >
-      &quot;To Accomplish Your Dreams You Have To Wake Up To Reality In Other Words It&apos;s Not Going To Happen Bro 😭🥀&quot;
+      Web Developer
     </motion.p>
 
     {/* Button Group */}
