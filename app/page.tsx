@@ -327,12 +327,12 @@ export default function Home() {
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           Why You Should Hire Me?
         </h2>
-        <p className="text-gray-700 max-w-lg">
+        <div className="text-gray-700 max-w-lg">
           I Have <div className='text-blue-400 inline'>Two Years Of Experience</div> In Web Development Which Is More Than Most Freshman In College.
           I Have Worked On Several Projects, That Demonstrate My Ability To Create Functional And Visually Appealing Websites.
           I Am Proficient In <div className='text-blue-400 inline'>Typescript</div> And Popular Frameworks Such as <div className='text-blue-400 inline'>Next.js</div>. My Enthusiasm For Coding Drives Me To Continuously
           Learn And Stay Updated With The Latest Industry Trends. I Am A Quick Learner, And I Thrive In Dynamic Environments Where I Can Constantly Learn.
-        </p>
+        </div>
       </motion.div>
     </motion.div>
   </motion.div>
