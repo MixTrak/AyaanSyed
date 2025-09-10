@@ -42,7 +42,7 @@ const AnimatedElement = ({
       initial="hidden"
       whileInView="show"
       transition={{ delay, duration }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       {children}
     </motion.div>
@@ -62,7 +62,7 @@ const StaggerContainer = ({
   <motion.div
     initial="hidden"
     whileInView="show"
-    viewport={{ once: true }}
+    viewport={{ once: false }}
     variants={{
       hidden: {},
       show: { transition: { staggerChildren, delayChildren } },
@@ -199,6 +199,7 @@ export default function Home() {
   initial={{ opacity: 0, y: 40 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 1, delay: 0.6 }}
+  viewport={{ once: false }}
 >
 
   <motion.button
@@ -254,7 +255,7 @@ export default function Home() {
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
-    viewport={{ once: true }}
+    viewport={{ once: false }}
   >
     {/* LEFT: Profile Picture */}
     <motion.div
@@ -262,7 +263,7 @@ export default function Home() {
       initial={{ scale: 0.8, opacity: 0 }}
       whileInView={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       <MotionImage
         src={PFP3}
@@ -283,14 +284,14 @@ export default function Home() {
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       {/* About Me */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
       >
         <div className="text-3xl font-bold text-gray-900 mb-4">
           About Me
@@ -305,11 +306,11 @@ export default function Home() {
         </div>
         <div className="text-gray-700 max-w-lg">
           I&apos;m <div className="text-blue-400 inline">Ayaan</div>, a 9th-grade student at{" "}
-          <div className="text-blue-400 inline">Vibgyor High Bangalore</div>,
+          <div className="text-blue-400 inline"><a href='https://www.vibgyorhigh.com/schools/bengaluru' target="_blank" rel="noopener noreferrer">Vibgyor High Bangalore</a></div>,
           who discovered a deep passion for programming at the age of 12.
           Since then, I have been relentlessly pursuing mastery in the art of coding,
           constantly expanding my knowledge and refining my skills. My current mission is to excel in{" "}
-          <div className="text-blue-400 inline">Web Development</div>,
+          <div className="text-blue-400 inline">Web Development</div> and <div className='text-blue-400 inline'>Prompt Engineering</div>,
           with a particular focus on building modern, scalable,
           and user-centric e-commerce platforms. With a growing expertise in designing seamless digital storefronts,
           I aim to blend creativity with technical precision to deliver impactful online experiences.
@@ -321,15 +322,15 @@ export default function Home() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
       >
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           Why You Should Hire Me?
         </h2>
         <p className="text-gray-700 max-w-lg">
-          I Have Two Years Of Experience In Web Development Which Is More Than Most Freshman In College.
+          I Have <div className='text-blue-400 inline'>Two Years Of Experience</div> In Web Development Which Is More Than Most Freshman In College.
           I Have Worked On Several Projects, That Demonstrate My Ability To Create Functional And Visually Appealing Websites.
-          I Am Proficient In Typescript And Popular Frameworks Like React And Next.js. My Passion For Coding Drives Me To Continuously
+          I Am Proficient In <div className='text-blue-400 inline'>Typescript</div> And Popular Frameworks Such as <div className='text-blue-400 inline'>Next.js</div>. My Enthusiasm For Coding Drives Me To Continuously
           Learn And Stay Updated With The Latest Industry Trends. I Am A Quick Learner, And I Thrive In Dynamic Environments Where I Can Constantly Learn.
         </p>
       </motion.div>
@@ -365,7 +366,7 @@ export default function Home() {
         transition: { staggerChildren: 0.2 },
       },
     }}
-    viewport={{ once: true }}
+    viewport={{ once: false }}
   >
     {[
       {
@@ -392,6 +393,7 @@ export default function Home() {
       <motion.div
         key={i}
         className="flex flex-col items-center p-6 rounded-2xl shadow-lg bg-gray-50"
+        viewport={{ once: false }}
         variants={{
           hidden: { opacity: 0, y: 40 },
           visible: { opacity: 1, y: 0 },
@@ -478,14 +480,14 @@ export default function Home() {
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       <motion.h3
         className="text-2xl font-semibold text-gray-900"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
       >
         Chatify
       </motion.h3>
@@ -512,7 +514,7 @@ export default function Home() {
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
       >
         Visit Website
       </motion.a>
@@ -542,7 +544,7 @@ export default function Home() {
         hidden: {},
         visible: { transition: { staggerChildren: 0.2 } },
       }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       {[
         {
@@ -561,6 +563,7 @@ export default function Home() {
         <motion.div
           key={i}
           className="flex items-center gap-4"
+          viewport={{ once: false }}
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 },
@@ -603,7 +606,7 @@ export default function Home() {
         hidden: {},
         visible: { transition: { staggerChildren: 0.2 } },
       }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       {[
         {
@@ -632,6 +635,7 @@ export default function Home() {
             visible: { opacity: 1, y: 0 },
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: false }}
         >
           <label className="block text-sm font-medium mb-2 text-black">
             {field.label}
@@ -669,6 +673,7 @@ export default function Home() {
           className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          viewport={{ once: false }}
         />
       ) : (
         "Send Message"
