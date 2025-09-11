@@ -2,10 +2,18 @@
 
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
+
 import PFP3 from "@/public/PFP3.svg";
+
 import Chatify1 from "@/public/Chatify1.svg";
 import Chatify2 from "@/public/Chatify2.svg";
 import Chatify3 from "@/public/Chatify3.svg";
+
+import ETS1 from "@/public/ETS1.svg";
+import ETS2 from "@/public/ETS2.svg";
+import ETS3 from "@/public/ETS3.svg";
+import ETS4 from "@/public/ETS4.svg";
+
 const MotionImage = motion(Image);
 import { useRef, useState, useEffect } from "react";
 import {
@@ -86,11 +94,15 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const generated = Array.from({ length: 50 }).map(() => {
+    const generated = Array.from({ length: 100 }).map(() => {
       const size = Math.floor(Math.random() * 30) + 10;
+      console.log(size);
       const top = Math.random() * 100;
+      console.log(top);
       const duration = Math.random() * 15 + 8;
+      console.log(duration);
       const delay = Math.random() * 10;
+      console.log(delay);
       return { size, top, duration, delay };
     });
     setBlocks(generated);
@@ -142,7 +154,7 @@ export default function Home() {
   {blocks.map((block, i) => (
     <div
       key={i}
-      className="absolute bg-purple-500 opacity-40 rounded animate-slide-x"
+      className="absolute bg-blue-200 opacity-40 rounded animate-slide-x"
       style={{
         width: `${block.size}px`,
         height: `${block.size}px`,
@@ -174,7 +186,7 @@ export default function Home() {
   <motion.span
     initial={{ opacity: 0, x: -20 }}
     animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8, delay: 0.3 }}
+    transition={{ duration: 0.8, delay: 0.5 }}
   >
     Prompt Engineer
   </motion.span>
@@ -408,7 +420,6 @@ export default function Home() {
   </motion.div>
 </section>
 
-
 {/* Previous Work */}
 <section
   ref={previousRef}
@@ -420,107 +431,213 @@ export default function Home() {
     initial={{ opacity: 0, y: -40 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: "easeOut" }}
-    viewport={{ once: true }}
+    viewport={{ once: false }}
   >
     Previous Work
   </motion.h2>
 
-  {/* Project Showcase */}
-  <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-12 items-center">
-    {/* Carousel (NO animation) */}
-    <div className="carousel w-full lg:w-2/3">
-      {(() => {
-        const scrollToSlide = (id: string) => {
-          const el = document.querySelector(id);
-          if (el) {
-            el.scrollIntoView({
-              block: "nearest",
-              inline: "center",
-              behavior: "smooth",
-            });
-          }
-        };
+  {/* Project List Wrapper */}
+  <div className="w-full max-w-6xl flex flex-col gap-24">
+    {/* Project 1 - Chatify */}
+    <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-start">
+      {/* Carousel (NO animation) */}
+      <div className="carousel w-full lg:w-2/3">
+        {(() => {
+          const scrollToSlide = (id: string) => {
+            const el = document.querySelector(id);
+            if (el) {
+              el.scrollIntoView({
+                block: "nearest",
+                inline: "center",
+                behavior: "smooth",
+              });
+            }
+          };
 
-        return (
-          <>
-            {/* Slide 1 */}
-            <div id="slide1" className="carousel-item relative w-full">
-              <MotionImage src={Chatify1} alt="Image Of Chatify" className="w-full" />
-              <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <button onClick={() => scrollToSlide("#slide3")} className="btn btn-circle">❮</button>
-                <button onClick={() => scrollToSlide("#slide2")} className="btn btn-circle">❯</button>
+          return (
+            <>
+              {/* Slide 1 */}
+              <div id="slide1" className="carousel-item relative w-full">
+                <MotionImage src={Chatify1} alt="Image Of Chatify" className="w-full" />
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                  <button onClick={() => scrollToSlide("#slide3")} className="btn btn-circle">❮</button>
+                  <button onClick={() => scrollToSlide("#slide2")} className="btn btn-circle">❯</button>
+                </div>
               </div>
-            </div>
 
-            {/* Slide 2 */}
-            <div id="slide2" className="carousel-item relative w-full">
-              <MotionImage src={Chatify2} alt="Image Of Chatify" className="w-full" />
-              <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <button onClick={() => scrollToSlide("#slide1")} className="btn btn-circle">❮</button>
-                <button onClick={() => scrollToSlide("#slide3")} className="btn btn-circle">❯</button>
+              {/* Slide 2 */}
+              <div id="slide2" className="carousel-item relative w-full">
+                <MotionImage src={Chatify2} alt="Image Of Chatify" className="w-full" />
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                  <button onClick={() => scrollToSlide("#slide1")} className="btn btn-circle">❮</button>
+                  <button onClick={() => scrollToSlide("#slide3")} className="btn btn-circle">❯</button>
+                </div>
               </div>
-            </div>
 
-            {/* Slide 3 */}
-            <div id="slide3" className="carousel-item relative w-full">
-              <MotionImage src={Chatify3} alt="Image Of Chatify" className="w-full" />
-              <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <button onClick={() => scrollToSlide("#slide2")} className="btn btn-circle">❮</button>
-                <button onClick={() => scrollToSlide("#slide1")} className="btn btn-circle">❯</button>
+              {/* Slide 3 */}
+              <div id="slide3" className="carousel-item relative w-full">
+                <MotionImage src={Chatify3} alt="Image Of Chatify" className="w-full" />
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                  <button onClick={() => scrollToSlide("#slide2")} className="btn btn-circle">❮</button>
+                  <button onClick={() => scrollToSlide("#slide1")} className="btn btn-circle">❯</button>
+                </div>
               </div>
-            </div>
-          </>
-        );
-      })()}
+            </>
+          );
+        })()}
+      </div>
+
+      {/* Project Info */}
+      <motion.div
+        className="text-center lg:text-left lg:w-1/3"
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        viewport={{ once: false }}
+      >
+        <motion.h3
+          className="text-2xl font-semibold text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: false }}
+        >
+          Chatify
+        </motion.h3>
+
+        <motion.p
+          className="text-gray-700 mt-2"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: false }}
+        >
+          Chatify – A sleek and modern messaging platform built with Next.js, Firebase, and MongoDB. 
+          Effortlessly send text messages and images, connect with friends, and stay engaged in real time.
+          <br /><br />
+          This project goes beyond basic chatting — it offers intuitive profile management, seamless group creation, 
+          and a smooth, user-friendly experience that keeps conversations fun and meaningful.
+        </motion.p>
+
+        <motion.a
+          href="https://chatify-org.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-4 px-6 py-2 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          viewport={{ once: false }}
+        >
+          Visit Website
+        </motion.a>
+      </motion.div>
     </div>
 
-    {/* Project Info */}
-    <motion.div
-      className="text-center lg:text-left lg:w-1/3"
-      initial={{ opacity: 0, x: 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-      viewport={{ once: false }}
-    >
-      <motion.h3
-        className="text-2xl font-semibold text-gray-900"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+    {/* Project 2 - ETS */}
+    <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-start">
+      {/* Carousel (NO animation) */}
+      <div className="carousel w-full lg:w-2/3">
+        {(() => {
+          const scrollToSlide = (id: string) => {
+            const el = document.querySelector(id);
+            if (el) {
+              el.scrollIntoView({
+                block: "nearest",
+                inline: "center",
+                behavior: "smooth",
+              });
+            }
+          };
+
+          return (
+            <>
+              {/* Slide 1 */}
+              <div id="slide4" className="carousel-item relative w-full">
+                <MotionImage src={ETS1} alt="Image Of Chatify" className="w-full" />
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                  <button onClick={() => scrollToSlide("#slide7")} className="btn btn-circle">❮</button>
+                  <button onClick={() => scrollToSlide("#slide5")} className="btn btn-circle">❯</button>
+                </div>
+              </div>
+
+              {/* Slide 2 */}
+              <div id="slide5" className="carousel-item relative w-full">
+                <MotionImage src={ETS2} alt="Image Of Chatify" className="w-full" />
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                  <button onClick={() => scrollToSlide("#slide4")} className="btn btn-circle">❮</button>
+                  <button onClick={() => scrollToSlide("#slide6")} className="btn btn-circle">❯</button>
+                </div>
+              </div>
+
+              {/* Slide 3 */}
+              <div id="slide6" className="carousel-item relative w-full">
+                <MotionImage src={ETS3} alt="Image Of Chatify" className="w-full" />
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                  <button onClick={() => scrollToSlide("#slide5")} className="btn btn-circle">❮</button>
+                  <button onClick={() => scrollToSlide("#slide7")} className="btn btn-circle">❯</button>
+                </div>
+              </div>
+
+              {/* Slide 4 */}
+              <div id="slide7" className="carousel-item relative w-full">
+                <MotionImage src={ETS4} alt="Image Of Chatify" className="w-full" />
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                  <button onClick={() => scrollToSlide("#slide6")} className="btn btn-circle">❮</button>
+                  <button onClick={() => scrollToSlide("#slide4")} className="btn btn-circle">❯</button>
+                </div>
+              </div>
+            </>
+          );
+        })()}
+      </div>
+
+      {/* Project Info */}
+      <motion.div
+        className="text-center lg:text-left lg:w-1/3"
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         viewport={{ once: false }}
       >
-        Chatify
-      </motion.h3>
+        <motion.h3
+          className="text-2xl font-semibold text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: false }}
+        >
+          ETS
+        </motion.h3>
 
-      <motion.p
-        className="text-gray-700 mt-2"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        viewport={{ once: true }}
-      >
-        Chatify – A sleek and modern messaging platform built with Next.js, Firebase, and MongoDB. 
-        Effortlessly send text messages and images, connect with friends, and stay engaged in real time.
-        <br /><br />
-        This project goes beyond basic chatting — it offers intuitive profile management, seamless group creation, 
-        and a smooth, user-friendly experience that keeps conversations fun and meaningful.
-      </motion.p>
+        <motion.p
+          className="text-gray-700 mt-2"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: false }}
+        >
+          ETS – A sleek and modern e-commerce platform built with Next.js, Firebase, and MongoDB.
+          Effortlessly Find and Buy Top Quality Products.
+        </motion.p>
 
-      <motion.a
-        href="https://chatify-org.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block mt-4 px-6 py-2 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        viewport={{ once: false }}
-      >
-        Visit Website
-      </motion.a>
-    </motion.div>
+        <motion.a
+          href="https://ets-ecommerce.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-4 px-6 py-2 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          viewport={{ once: false }}
+        >
+          Visit Website
+        </motion.a>
+      </motion.div>
+    </div>
   </div>
 </section>
+
 
 {/* CONTACT */}
 <section
