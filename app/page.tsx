@@ -103,13 +103,10 @@ export default function Home() {
   useEffect(() => {
     const generated = Array.from({ length: 100 }).map(() => {
       const size = Math.floor(Math.random() * 30) + 10;
-      console.log(size);
       const top = Math.random() * 100;
-      console.log(top);
       const duration = Math.random() * 15 + 8;
-      console.log(duration);
       const delay = Math.random() * 10;
-      console.log(delay);
+      console.log("Blocks Generated Properly");
       return { size, top, duration, delay };
     });
     setBlocks(generated);
