@@ -154,7 +154,7 @@ export default function Home() {
   {blocks.map((block, i) => (
     <div
       key={i}
-      className="absolute bg-blue-200 opacity-40 rounded-full animate-slide-x"
+      className="absolute bg-blue-200 opacity-40 rounded animate-slide-x"
       style={{
         width: `${block.size}px`,
         height: `${block.size}px`,

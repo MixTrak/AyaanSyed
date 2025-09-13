@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-
-// Import cursor components
 import { CursorProvider, Cursor, CursorTrail } from "@/components/cursor";
-
+import AudioController from "@/components/AudioController"; // 👈 import
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,17 +27,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-
         <CursorProvider>
-            
-            <Cursor />
+          {/* Custom Cursor */}
+          <Cursor />
+          <CursorTrail />
 
-            <CursorTrail />
+          {/* Page Content */}
+          {children}
 
-            {children}
-
-          </CursorProvider>
-
+          {/* Background Audio Controller */}
+          <AudioController />
+        </CursorProvider>
       </body>
     </html>
   );
