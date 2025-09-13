@@ -3,12 +3,19 @@
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 
+// Profile Picture
 import PFP3 from "@/public/PFP3.svg";
 
+// Background Images
+import PFP4 from "@/public/PFP4.png";
+import PFP4Mobile from "@/public/PFP4-Mobile.jpg";
+
+// Chatify Project Images
 import Chatify1 from "@/public/Chatify1.svg";
 import Chatify2 from "@/public/Chatify2.svg";
 import Chatify3 from "@/public/Chatify3.svg";
 
+// ETS Project Images
 import ETS1 from "@/public/ETS1.svg";
 import ETS2 from "@/public/ETS2.svg";
 import ETS3 from "@/public/ETS3.svg";
@@ -148,13 +155,34 @@ export default function Home() {
 
   return (
     <div className="w-full">
-      {/* HERO */}
+    {/* HERO */}
 <section className="relative w-full h-screen overflow-hidden bg-black">
+  {/* Desktop Background */}
+  <Image
+    src={PFP4}
+    alt="Background"
+    fill
+    className="hidden md:block object-cover brightness-50"
+    priority
+  /> 
+
+  {/* Mobile Background */}
+  <Image
+    src={PFP4Mobile}
+    alt="Background Mobile"
+    fill
+    className="block md:hidden object-cover brightness-50"
+    priority
+  />
+
+  {/* Optional overlay to make it more subtle */}
+  <div className="absolute inset-0 bg-black/70" />
+
   {/* Background floating blocks */}
   {blocks.map((block, i) => (
     <div
       key={i}
-      className="absolute bg-blue-200 opacity-40 rounded-full animate-slide-x"
+      className="absolute rounded-full animate-slide-x"
       style={{
         width: `${block.size}px`,
         height: `${block.size}px`,
@@ -162,6 +190,8 @@ export default function Home() {
         animationDuration: `${block.duration}s`,
         animationDelay: `${block.delay}s`,
         transform: "translateX(-120%)",
+        backgroundColor: "rgba(194,160,252,1)", // custom color
+      opacity: 0.4, // keep subtle transparency
       }}
     />
   ))}
@@ -278,7 +308,7 @@ export default function Home() {
       viewport={{ once: false }}
     >
       <MotionImage
-        src={PFP3}
+        src={PFP4}
         alt="Profile Picture"
         className="w-48 h-48 object-cover"
         animate={{ scale: [1, 1.1, 1] }} // pulse effect
