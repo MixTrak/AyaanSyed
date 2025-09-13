@@ -36,7 +36,8 @@ export default function RootLayout({
           {children}
 
           {/* Background Audio Controller */}
-          <AudioController />
+          {/* <AudioController /> */}
+          
         </CursorProvider>
       </body>
     </html>
