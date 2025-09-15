@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { CursorProvider, Cursor, CursorTrail } from "@/components/cursor";
 import AudioController from "@/components/AudioController"; // 👈 import
 import "./globals.css";
+import Sidebar from "@/components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,9 @@ export default function RootLayout({
 
           {/* Background Audio Controller */}
           {/* <AudioController /> */}
+
+          {/* SideBar */}
+          <Sidebar />
           
         </CursorProvider>
       </body>
