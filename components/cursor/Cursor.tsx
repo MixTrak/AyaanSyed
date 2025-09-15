@@ -41,6 +41,7 @@ export const Cursor: React.FC<{ visibleOnTouch?: boolean }> = ({
           pointerEvents: "none",
           zIndex: 9999,
           transform: `translate3d(${pos.x}px, ${pos.y}px, 0)`,
+overflow-x: "visible"
         }}
       >
         <div
@@ -55,6 +56,7 @@ export const Cursor: React.FC<{ visibleOnTouch?: boolean }> = ({
             WebkitBackdropFilter: "blur(8px)", // Safari support
             boxShadow: "0 0 20px rgba(0,0,0,0.1)", // subtle glow
             transition: "transform 150ms ease, background 200ms ease",
+overflow-x: "visible"
           }}
         />
       </div>
