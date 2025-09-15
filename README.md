@@ -1,37 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ayaan Syed – Portfolio
 
-## Getting Started
+🚀 **Full Stack Developer | Prompt Engineer | Student**
 
-First, run the development server:
+Welcome to my personal portfolio repository.  
+This site showcases my work in full stack development, prompt engineering, and projects I have built as part of my journey in web technologies.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 **Live Website**: [ayaan-syed.vercel.app](https://ayaan-syed.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧑‍💻 About Me
+I’m Ayaan, a student and full stack software developer passionate about building scalable web applications and exploring the future of AI-driven development. My focus areas include:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Frontend: HTML, CSS, JavaScript, React, Next.js, Tailwind CSS  
+- Backend: Node.js, Express, MongoDB  
+- Other Skills: Prompt Engineering, TypeScript
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📬 Contact
+- Portfolio: [ayaan-syed.vercel.app](https://ayaan-syed.vercel.app/)  
+- Email: ayaanplayz18@gmail.com
+- GitHub: [Your GitHub Username](https://github.com/MixTrak)  
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚡ Tech Stack
+- **Frontend**: React, Next.js, Tailwind CSS  
+- **Backend**: Node.js, Express  
+- **Database**: MongoDB  
+- **Other**: TypeScript, Prompt Engineering
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# AyaanSyed
+## 📄 License
+This portfolio is open-source and free to explore. Feel free to get inspired, but please don’t copy without attribution.
