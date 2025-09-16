@@ -17,7 +17,9 @@ const TechStackSection = forwardRef<HTMLDivElement>((props, ref) => {
         viewport={{ once: true }}
       >
         Current Tech Stack{" "}
-        <span className="text-purple-600 block text-center mt-2">AIMNT</span>
+        <div className="text-3xl font-bold text-purple-600 mb-4 text-center">
+              AIMNT
+        </div>
       </motion.h2>
 
       <motion.div

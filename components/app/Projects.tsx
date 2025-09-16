@@ -18,7 +18,7 @@ const PreviousWorkSection = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <section
       ref={ref}
-      className="w-full min-h-screen bg-gray-100 flex flex-col items-center px-6 py-20"
+      className="w-full min-h-screen bg-gray-100 flex-col items-center px-6 py-20 block"
     >
       <motion.h2
         className="text-4xl font-bold text-gray-900 mb-12"
@@ -27,7 +27,9 @@ const PreviousWorkSection = forwardRef<HTMLDivElement>((props, ref) => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: false }}
       >
-        Previous Work
+        <div className="text-3xl font-bold text-gray-600 mb-4 text-center">
+              Previous Work
+        </div>
       </motion.h2>
 
       <div className="w-full max-w-6xl flex flex-col gap-24">

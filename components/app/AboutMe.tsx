@@ -59,7 +59,7 @@ const AboutSection = forwardRef<HTMLDivElement>((props, ref) => {
             viewport={{ once: false }}
           >
             <div className="text-3xl font-bold text-gray-900 mb-4">
-              About Me
+              About Me{" "}
               <div
                 onClick={() => {
                   router.push("/admin");
