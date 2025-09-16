@@ -47,6 +47,27 @@ const ContactSection = forwardRef<
               <span className="text-lg text-black">{item.text}</span>
             </motion.div>
           ))}
+          <div className="flex items-center gap-4 mt-4">
+            <a href="https://github.com/Mixtrak" target="_blank">
+              <img src="https://skillicons.dev/icons?i=github" className="h-6"/>
+            </a>
+            <span className="text-lg text-black">GitHub</span>
+          </div>
+
+          <div className="flex items-center gap-4 mt-4">
+            <a href="https://www.instagram.com/ayaanplayz18" target="_blank">
+              <img src="https://skillicons.dev/icons?i=instagram" className="h-6"/>
+            </a>
+            <span className="text-lg text-black">Instagram</span>
+          </div>
+
+          <div className="flex items-center gap-4 mt-4">
+            <a href="https://discord.com/users/1157419276483952680" target="_blank">
+              <img src="https://skillicons.dev/icons?i=discord" className="h-6"/>
+            </a>
+            <span className="text-lg text-black">Discord</span>
+          </div>
+
         </motion.div>
 
         <motion.a
