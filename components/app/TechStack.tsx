@@ -7,27 +7,27 @@ import Image from "next/image";
 const TechStackSection = forwardRef<HTMLDivElement>((props, ref) => {
   const skills = [
     // Core Web
-    { icon: <img src="https://skillicons.dev/icons?i=html" className="w-12 h-12" />, title: "HTML", percent: 95 },
-    { icon: <img src="https://skillicons.dev/icons?i=css" className="w-12 h-12" />, title: "CSS", percent: 95 },
-    { icon: <img src="https://skillicons.dev/icons?i=js" className="w-12 h-12" />, title: "JavaScript", percent: 95 },
+    { icon: <img src="https://skillicons.dev/icons?i=html" className="w-12 h-12" />, title: "HTML", percent: 96 },
+    { icon: <img src="https://skillicons.dev/icons?i=css" className="w-12 h-12" />, title: "CSS", percent: 93 },
+    { icon: <img src="https://skillicons.dev/icons?i=js" className="w-12 h-12" />, title: "JavaScript", percent: 94 },
     { icon: <img src="https://skillicons.dev/icons?i=ts" className="w-12 h-12" />, title: "TypeScript", percent: 85 },
 
     // Frontend Frameworks
-    { icon: <img src="https://skillicons.dev/icons?i=react" className="w-12 h-12" />, title: "React", percent: 90 },
-    { icon: <img src="https://skillicons.dev/icons?i=nextjs" className="w-12 h-12" />, title: "Next.js", percent: 95 },
-    { icon: <img src="https://skillicons.dev/icons?i=tailwindcss" className="w-12 h-12" />, title: "Tailwind", percent: 90 },
-    { icon: <Image src={daisyUI} className="w-12 h-12" alt="daisyUI" />, title: "DaisyUI", percent: 70 },
+    { icon: <img src="https://skillicons.dev/icons?i=react" className="w-12 h-12" />, title: "React", percent: 89 },
+    { icon: <img src="https://skillicons.dev/icons?i=nextjs" className="w-12 h-12" />, title: "Next.js", percent: 96 },
+    { icon: <img src="https://skillicons.dev/icons?i=tailwindcss" className="w-12 h-12" />, title: "Tailwind", percent: 97 },
+    { icon: <Image src={daisyUI} className="w-12 h-12" alt="daisyUI" />, title: "DaisyUI", percent: 90 },
 
     // Backend
-    { icon: <img src="https://skillicons.dev/icons?i=nodejs" className="w-12 h-12" />, title: "Node.js", percent: 70 },
-    { icon: <img src="https://skillicons.dev/icons?i=express" className="w-12 h-12" />, title: "Express", percent: 70 },
-    { icon: <img src="https://skillicons.dev/icons?i=mongodb" className="w-12 h-12" />, title: "MongoDB", percent: 95 },
-    { icon: <img src="https://skillicons.dev/icons?i=firebase" className="w-12 h-12" />, title: "Firebase", percent: 95 },
+    { icon: <img src="https://skillicons.dev/icons?i=nodejs" className="w-12 h-12" />, title: "Node.js", percent: 71 },
+    { icon: <img src="https://skillicons.dev/icons?i=express" className="w-12 h-12" />, title: "Express", percent: 77 },
+    { icon: <img src="https://skillicons.dev/icons?i=mongodb" className="w-12 h-12" />, title: "MongoDB", percent: 98 },
+    { icon: <img src="https://skillicons.dev/icons?i=firebase" className="w-12 h-12" />, title: "Firebase", percent: 94 },
 
     // Others
-    { icon: <img src="https://skillicons.dev/icons?i=python" className="w-12 h-12" />, title: "Python", percent: 90 },
-    { icon: <img src="https://skillicons.dev/icons?i=git" className="w-12 h-12" />, title: "Git", percent: 85 },
-    { icon: <img src="https://skillicons.dev/icons?i=github" className="w-12 h-12" />, title: "GitHub", percent: 90 },
+    { icon: <img src="https://skillicons.dev/icons?i=python" className="w-12 h-12" />, title: "Python", percent: 98 },
+    { icon: <img src="https://skillicons.dev/icons?i=git" className="w-12 h-12" />, title: "Git", percent: 93 },
+    { icon: <img src="https://skillicons.dev/icons?i=github" className="w-12 h-12" />, title: "GitHub", percent: 97 },
   ];
 
   return (
