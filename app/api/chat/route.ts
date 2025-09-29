@@ -110,7 +110,7 @@ export async function POST(req: Request) {
     }
 
     const completion = await openai.chat.completions.create({
-      model: "openrouter/sonoma-dusk-alpha",
+      model: "google/gemini-2.0-flash-exp:free",
       messages: [
         { role: "system", content: info },
         { role: "user", content: input },

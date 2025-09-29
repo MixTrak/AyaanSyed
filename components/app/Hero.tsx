@@ -39,7 +39,7 @@ export default function HeroSection({
       ))}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
         <motion.h1
-          className="text-white text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg"
+          className="text-white text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg overflow-y-hidden"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -79,7 +79,7 @@ export default function HeroSection({
               whileTap={{ scale: 0.95 }}
               animate={{ y: [0, -2, 0] }}
               transition={{ repeat: Infinity, duration: 2, delay: i * 0.2 }}
-              className="relative text-sm px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white font-medium shadow-md hover:shadow-purple-400/60 transition-all duration-300 ease-out overflow-hidden backdrop-blur-md"
+              className="relative text-sm px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white font-medium shadow-md hover:shadow-purple-400/60 transition-all duration-300 ease-out overflow-y-hidden backdrop-blur-md"
             >
               <span className="relative z-10">{btn.label}</span>
               <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></span>
