@@ -21,7 +21,7 @@ I’m Ayaan, a student and full stack software developer passionate about buildi
 ## 📬 Contact
 - Portfolio: [ayaan-syed.vercel.app](https://ayaan-syed.vercel.app/)  
 - Email: ayaanplayz18@gmail.com
-- GitHub: [Your GitHub Username](https://github.com/MixTrak)  
+- GitHub: [GitHub Username](https://github.com/MixTrak)  
 ---
 
 ## ⚡ Tech Stack
