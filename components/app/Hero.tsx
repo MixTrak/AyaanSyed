@@ -68,7 +68,7 @@ export default function HeroSection({
         >
           {[
             { label: "About", onClick: handleScrollAboutMe },
-            { label: "Stack", onClick: handleScrollTechStack },
+            { label: "Skills", onClick: handleScrollTechStack },
             { label: "XP", onClick: handleScrollPrevious },
             { label: "Contact", onClick: handleScrollContact },
           ].map((btn, i) => (
@@ -94,7 +94,7 @@ export default function HeroSection({
         >
           {[
             { label: "About Me", onClick: handleScrollAboutMe },
-            { label: "Tech Stack", onClick: handleScrollTechStack },
+            { label: "Skills", onClick: handleScrollTechStack },
             { label: "Experiences", onClick: handleScrollPrevious },
             { label: "Get In Touch", onClick: handleScrollContact },
           ].map((btn, i) => (
