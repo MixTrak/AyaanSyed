@@ -13,8 +13,12 @@ import ETS2 from "@/public/ETS2.svg";
 import ETS3 from "@/public/ETS3.svg";
 import ETS4 from "@/public/ETS4.svg";
 
+import SkillShare1 from "@/public/SkillShare1.svg";
+import SkillShare2 from "@/public/SkillShare2.svg";
+import SkillShare3 from "@/public/SkillShare3.svg";
+
 import Demo from "/videos/Demo.mp4";
-import getStarted from '/videos/get-started.mp4';
+// import getStarted from '/videos/get-started.mp4';
 
 const MotionImage = motion.create(Image);
 
@@ -212,7 +216,92 @@ const PreviousWorkSection = forwardRef<HTMLDivElement>((props, ref) => {
             </motion.a>
           </motion.div>
         </div>
-        {/* Project - 3 - GateFace */}
+
+            {/* Project 3 - SkillShare */}
+        <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-start">
+          <div className="carousel w-full lg:w-2/3">
+            {(() => {
+              const scrollToSlide = (id: string) => {
+                const el = document.querySelector(id);
+                if (el) {
+                  el.scrollIntoView({
+                    block: "nearest",
+                    inline: "center",
+                    behavior: "smooth",
+                  });
+                }
+              };
+
+              return (
+                <>
+                  <div id="slide8" className="carousel-item relative w-full">
+                    <MotionImage src={SkillShare1} alt="Image Of SkillShare" className="w-full" />
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                      <button onClick={() => scrollToSlide("#slide10")} className="btn btn-circle">❮</button>
+                      <button onClick={() => scrollToSlide("#slide9")} className="btn btn-circle">❯</button>
+                    </div>
+                  </div>
+
+                  <div id="slide9" className="carousel-item relative w-full">
+                    <MotionImage src={SkillShare2} alt="Image Of SkillShare" className="w-full" />
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                      <button onClick={() => scrollToSlide("#slide8")} className="btn btn-circle">❮</button>
+                      <button onClick={() => scrollToSlide("#slide10")} className="btn btn-circle">❯</button>
+                    </div>
+                  </div>
+
+                  <div id="slide10" className="carousel-item relative w-full">
+                    <MotionImage src={SkillShare3} alt="Image Of SkillShare" className="w-full" />
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                      <button onClick={() => scrollToSlide("#slide9")} className="btn btn-circle">❮</button>
+                      <button onClick={() => scrollToSlide("#slide8")} className="btn btn-circle">❯</button>
+                    </div>
+                  </div>
+                </>
+              );
+            })()}
+          </div>
+
+          <motion.div
+            className="text-center lg:text-left lg:w-1/3"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            <motion.h3
+              className="text-2xl font-semibold text-gray-900"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              SkillShare
+            </motion.h3>
+            <motion.p
+              className="text-gray-700 mt-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              SkillShare – A  modern, full-stack e-commerce platform built with Next.js 14,
+              TypeScript, MongoDB, and Framer Motion. Features include product management,
+              user authentication, admin panel with role-based access control, WhatsApp integration,
+              and beautiful animations.
+            </motion.p>
+            <motion.a
+              href="https://skill-share-nxt.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 px-6 py-2 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              Visit Website
+            </motion.a>
+          </motion.div>
+        </div>
+
+        {/* Project - 4 - GateFace */}
         <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-start">
           <div className="rounded-lg object-cover">
             <Video src={Demo} />
