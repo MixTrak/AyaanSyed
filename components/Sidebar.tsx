@@ -29,7 +29,7 @@ export default function Sidebar() {
     };
 
     fetchAvailability();
-    const interval = setInterval(fetchAvailability, 1000);
+    const interval = setInterval(fetchAvailability, 600000);
     return () => clearInterval(interval);
   }, []);
 

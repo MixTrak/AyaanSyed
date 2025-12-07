@@ -17,7 +17,7 @@ import SkillShare1 from "@/public/SkillShare1.svg";
 import SkillShare2 from "@/public/SkillShare2.svg";
 import SkillShare3 from "@/public/SkillShare3.svg";
 
-import Demo from "/videos/Demo.mp4";
+import Demo from "@/videos/Demo.mp4.json";
 // import getStarted from '/videos/get-started.mp4';
 
 const MotionImage = motion.create(Image);
@@ -36,7 +36,7 @@ const PreviousWorkSection = forwardRef<HTMLDivElement>((props, ref) => {
         viewport={{ once: false }}
       >
         <div className="text-3xl font-bold text-gray-600 mb-4 text-center">
-              Previous Work
+          Previous Work
         </div>
       </motion.h2>
 
@@ -217,7 +217,7 @@ const PreviousWorkSection = forwardRef<HTMLDivElement>((props, ref) => {
           </motion.div>
         </div>
 
-            {/* Project 3 - SkillShare */}
+        {/* Project 3 - SkillShare */}
         <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-start">
           <div className="carousel w-full lg:w-2/3">
             {(() => {
@@ -304,7 +304,7 @@ const PreviousWorkSection = forwardRef<HTMLDivElement>((props, ref) => {
         {/* Project - 4 - GateFace */}
         <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-start">
           <div className="rounded-lg object-cover">
-            <Video src={Demo} />
+            <Video src={Demo as any} />
           </div>
           <motion.div
             className="text-center lg:text-left lg:w-1/3"

@@ -11,8 +11,19 @@ interface Message {
   message: string;
 }
 
+interface PaymentLog {
+  _id: string;
+  referenceNumber: string;
+  amount: string;
+  from: string;
+  vpa: string;
+  date: string;
+}
+
 export default function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [payments, setPayments] = useState<PaymentLog[]>([]);
+  const [loadingPayments, setLoadingPayments] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -26,6 +37,14 @@ export default function Dashboard() {
     fetch("/api/messages")
       .then((res) => res.json())
       .then((data) => setMessages(data));
+
+    fetch("/api/admin/payments")
+      .then((res) => res.json())
+      .then((data) => {
+        setPayments(data);
+        setLoadingPayments(false);
+      })
+      .catch(err => console.error("Failed to load payments", err));
   }, [router]);
 
   const handleDelete = async (id: string) => {
@@ -126,26 +145,71 @@ export default function Dashboard() {
       </AnimatePresence>
 
       {/* Availability Toggle */}
-<div className="mt-10 flex justify-center">
-  <label className="relative flex items-center gap-3 cursor-pointer select-none bg-purple-500 p-5 rounded-full shadow-lg">
-    <span className="text-lg font-medium text-white z-10 relative">
-      {available ? "Available" : "Unavailable"}
-    </span>
-    <div className="w-20 h-10 bg-purple-300 backdrop-blur-md rounded-full flex items-center px-1 transition-all duration-300">
-      <input
-        type="checkbox"
-        checked={available}
-        onChange={handleToggle}
-        className="sr-only"
-      />
-      <div
-        className={`w-8 h-8 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
-          available ? "translate-x-10" : "translate-x-0"
-        }`}
-      />
-    </div>
-  </label>
-</div>
+      <div className="mt-10 flex justify-center">
+        <label className="relative flex items-center gap-3 cursor-pointer select-none bg-purple-500 p-5 rounded-full shadow-lg">
+          <span className="text-lg font-medium text-white z-10 relative">
+            {available ? "Available" : "Unavailable"}
+          </span>
+          <div className="w-20 h-10 bg-purple-300 backdrop-blur-md rounded-full flex items-center px-1 transition-all duration-300">
+            <input
+              type="checkbox"
+              checked={available}
+              onChange={handleToggle}
+              className="sr-only"
+            />
+            <div
+              className={`w-8 h-8 bg-white rounded-full shadow-md transform transition-transform duration-300 ${available ? "translate-x-10" : "translate-x-0"
+                }`}
+            />
+          </div>
+        </label>
+      </div>
+
+      {/* Payment Logs Section */}
+      <motion.div
+        className="mt-16"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h2 className="text-3xl font-bold mb-6 text-gray-900 text-center">Recent Donations</h2>
+
+        {loadingPayments ? (
+          <div className="text-center text-gray-500">Loading payments...</div>
+        ) : payments.length === 0 ? (
+          <div className="text-center text-gray-500">No donations yet.</div>
+        ) : (
+          <div className="overflow-x-auto bg-white rounded-2xl shadow-lg">
+            <table className="table w-full">
+              <thead className="bg-gray-100 text-black">
+                <tr>
+                  <th className="p-4 text-left">Date</th>
+                  <th className="p-4 text-left">From</th>
+                  <th className="p-4 text-left">Amount</th>
+                  <th className="p-4 text-left">Ref Number</th>
+                  <th className="p-4 text-left">VPA</th>
+                </tr>
+              </thead>
+              <tbody>
+                {payments.map((log) => (
+                  <tr key={log._id} className="border-t border-gray-100 hover:bg-gray-50">
+                    <td className="p-4">
+                      {new Date(log.date).toLocaleDateString("en-IN", {
+                        day: 'numeric', month: 'short', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      })}
+                    </td>
+                    <td className="p-4 font-medium text-gray-900">{log.from || "Anonymous"}</td>
+                    <td className="p-4 text-green-600 font-bold">₹{log.amount}</td>
+                    <td className="p-4 font-mono text-sm text-gray-500">{log.referenceNumber}</td>
+                    <td className="p-4 text-sm text-gray-500">{log.vpa || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </motion.div>
 
 
       {/* Logout button */}

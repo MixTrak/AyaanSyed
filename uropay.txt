@@ -1,0 +1,204 @@
+Getting Started
+UroPay lets the registered user accept UPI payments directly to their bank account without a payment aggregator. The pre-requisite is to have the UroPay companion app continuously running on the Android phone where the user will get the UPI credit SMS. The app will read the UPI credit SMS and send the transaction details to the UroPay API. No other SMS, like OTP etc, are processed and they are ignored on the server with no storage whatsoever.
+
+To keep things simple to implement, there are only 3 endpoints - /order/generate, /order/update and /order/status.
+
+There is only 1 API url and it is the device which determines the TEST or PRODUCTION environments. You can login into the dashboard to change the environment.
+
+API URL: https://api.uropay.me
+
+All requests must include the following headers (optional headers are marked):
+
+Content-Type: application/json
+Accept: application/json
+X-API-KEY: YOUR_API_KEY_ASSIGNED_BY_UROPAY
+Authorization: Bearer `${sha512(YOUR_SECRET_ASSIGNED_BY_UROPAY)}` sha512 hashed secret
+Accept-Encoding: gzip, deflate, br (optional)
+Authentication
+Authentication is done via API keys. Include your API key in the header of each request:
+
+X-API-KEY: YOUR_API_KEY_ASSIGNED_BY_UROPAY
+Authorization: Bearer `${sha512(YOUR_SECRET_ASSIGNED_BY_UROPAY)}` sha512 hashed secret
+DO NOT SEND PLAIN SECRET IN THE REQUEST BODY OR IN THE HEADER OF THE REQUEST
+
+You can get an API KEY and SECRET after you login in your dashboard on https://app.uropay.me/ .
+
+Code Examples for generating the hashed secret:
+
+
+	//nodejs
+	const crypto = require('crypto');
+	const secret = 'YOUR_SECRET_ASSIGNED_BY_UROPAY';
+	const sha512 = crypto.createHash('sha512');
+	sha512.update(secret);
+	const hashedSecret = sha512.digest('hex');
+	console.log(hashedSecret);
+
+
+	//php
+	$secret = 'YOUR_SECRET_ASSIGNED_BY_UROPAY';
+	$sha512 = hash('sha512', $secret);
+	echo $sha512;
+
+						
+POST
+/order/generate
+Generates an order and returns a QR Code and an identifier for the order to be used later.
+
+Request Body
+Parameter	Type	Required	Description
+vpa	string	Yes	The VPA which will be used to receive the payment.
+vpaName	string	Yes	The name to be shown for the VPA
+amount	number	Yes	The amount in paise. For example, if the amount is ₹ 150/-, the amount should be 15000. The amount should be in RUPEES only.
+merchantOrderId	string	Yes	The order id provided by the merchant
+customerName	string	Yes	Customer name who will pay the money
+customerEmail	string	Yes	Customer email who will pay the money and who will receive a confirmation email from UroPay's side
+transactionNote	string	No	An optional field which is shown in the UPI app. It can be an identifier or a small description
+notes	JSON	No	a key value pair JSON object. This is only for internal use
+Request Example
+
+curl -X POST https://api.uropay.me/order/generate \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'X-API-KEY: YOUR_API_KEY_ASSIGNED_BY_UROPAY' \
+  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Authorization: Bearer `${sha512(YOUR_SECRET_ASSIGNED_BY_UROPAY)}`' \
+  -d '{
+    "vpa": "abc@icici",
+    "vpaName": "John Doe",
+    "amount": 15000,
+    "merchantOrderId": "ORDER1247",
+    "transactionNote": "For ORDER1247",
+    "customerName": "Jane Doe",
+    "customerEmail": "jane@gmail.com",
+    "notes": {
+      "key1": "value1",
+      "key2": "value2"
+    }
+  }'
+											
+Response
+{
+	"code": 200,
+	"status": "success",
+	"message": "Order created successfully",
+	"data": {
+		"uroPayOrderId": "india-bharat-united",
+		"orderStatus": "CREATED",
+		"upiString": "upi://pay?pa=abc@icici&pn=John%20Doe&am=150&cu=INR&tn=For%20ORDER1247&tr=india-bharat-united",
+		"qrCode": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhAQMAAAAEfUA5AAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACAElEQVRYhdWYsW3EMAxFKbhwqRE0ijY7aTSP4hFcqjDM8H/6HAQXXC2qCGw9F8eI/PyUyNfVFEvWo+i1DKkdr/xju5PSF394wks6pWx4Lf3iblC6qG7N4hXxLR15l8t3A9OkR9nSudrh4TB7fIpIq57rXvW//8Zs1LNuZOTdKDyuj5wMRV0ZjO41Id5+gv7VjVj0WdA6xQmq7h86HYki3q1xiznZddiH6bT4+6z0JSj4y9SsyoJYrO3YwmOLSZtlWfUeio7jaqb+YVQqeRMvG7gCtffd9brFpNC6qnfHoSuAMtj7o4TzUTuNwyrGUg/AisfCMoo60pj0tYy8NXSYCknDwWQlRdZFpFhQtUefzc5Y1p0ZpiYkNXcpaDOYCPghHs0VZNe6KSmdjFzIuouivKCE9JSn9qNRKx72UJ/LTBlAkYXFTzAexdSiODGLl1vwz43+WYJS6zAK9WazYfzsoQefJ6Xoj52zpK8Fx4Wse/xzMOpTjDsZHe5khCKNrAtKPeswXmIuW5B1b30OSeEK9H0nI/TPhaNMnZb6ohez6ZhZaB0HdVQ1JmUd+XQMek/HUDPX53j0riPUDW4vf+MtYanfjPnV0rh9juekzk4xwJBSn9N9URGYIkKfYjj/i+S4lFmHeM0/r/vdU6HPW1B6KwN8TlJex4h3nOcOKhr9un4AxDa+W6YafgEAAAAASUVORK5CYII=",
+		"amountInRupees": "150.00"
+	}
+}
+PATCH
+/order/update
+Once the customer pays for the order, the developer needs to ask the customer for the UPI Reference Number to update UroPay else the system will not be able to call your webhook on your server to update the payment status.
+
+Request Body
+Parameter	Type	Required	Description
+uroPayOrderId	string	Yes	The order id provided by UroPay to the merchant when the order was generated in the generate order api endpoint.
+referenceNumber	string	Yes	The UPI Reference Number provided by the customer after they have paid for the order. This needs to be unique across TEST and LIVE environments.
+orderStatus	string	No	You can update the order status if you need. Values allowed: CREATED | UPDATED | COMPLETED | FAILED | PENDING | CANCELLED.
+Request Example
+
+curl -X PUT https://api.uropay.me/order/update \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'X-API-KEY: YOUR_API_KEY_ASSIGNED_BY_UROPAY' \
+  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Authorization: Bearer `${sha512(YOUR_SECRET_ASSIGNED_BY_UROPAY)}`' \
+  -d '{
+    "uroPayOrderId": "india-bharat-united",
+    "referenceNumber": "280836361135"
+  }'
+											
+Response
+{
+    "code": 200,
+    "status": "success",
+    "message": "UPI referenceNumber in order: india-bharat-united updated successfully",
+    "data": {
+        "uroPayOrderId": "india-bharat-united",
+        "orderStatus": "UPDATED"
+    }
+}
+No need to update the order when the customer does not pay. In this scenario, the order will remain in CREATED state in your account.
+
+GET
+/order/status/:uroPayOrderId
+This endpoint can be polled at regular intervals to get the status of the order by using uroPayOrderId
+
+Query Parameters
+Parameter	Type	Required	Description
+uroPayOrderId	string	Yes	The order id provided by UroPay to the merchant when the order was generated in the generate order api endpoint.
+Request Example
+
+curl -X GET 'https://api.uropay.me/order/status/india-bharat-united' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'X-API-KEY: YOUR_API_KEY_ASSIGNED_BY_UROPAY' \
+  -H 'Accept-Encoding: gzip, deflate, br'
+											
+Important: You do not need to send the authorisation header. This endpoint can be used in client side code.
+
+Response
+{
+    "code": 200,
+    "status": "success",
+    "message": "Order status is PENDING" or "COMPLETED",
+    "data": {
+        "uroPayOrderId": "india-bharat-united",
+        "orderStatus": "PENDING" or "COMPLETED"
+    }
+}
+Error Codes
+Code	Description
+400	Bad Request - The request was invalid.
+401	Unauthorized - Authentication failed or not provided.
+403	Forbidden - You don't have permission to access this resource.
+404	Not Found - The specified resource was not found.
+429	Too Many Requests - Rate limit exceeded.
+500	Internal Server Error - Something went wrong on our end.
+Rate Limits
+The API has a rate limit of 60 requests per minute (one request every 1 second) per API key. If you exceed this limit, you'll receive a 429 Too many requests. response.
+
+The response will include the following headers:
+
+RateLimit-Policy: The rate limit time window
+RateLimit-Limit: The maximum number of requests allowed per time window
+RateLimit-Remaining: The remaining number of requests allowed per time window
+Webhook
+Once the UPI credit SMS arrives at the device, the UroPay companion Android app will read the SMS and send the SMS to the UroPay API. No other SMS, like OTP etc, are processed, and they are ignored on the server with no storage whatsoever.
+
+Once the transaction details are extracted from the SMS, the SMS is discarded and the transaction details are forwarded to the Webhook or Webhooks which the user has defined in the dashboard. The server will forward a JSON object as POST http request to the webhook.
+
+Along with JSON object, the server will also forward headers which can be used to validate the request.
+
+Headers
+Header	Value	Description	Code Sample
+Content-Type	application/json	The content type of the request
+X-Uropay-Environment	TEST or PRODUCTION	Based on the device associated with the environment set in the dashboard, the value will be TEST or PRODUCTION.
+X-Uropay-Webhook-Id	base 64 encoded string	A unique id for each webhook so that the duplicate calls can be handled.
+X-Uropay-Signature	Signature = HMAC-SHA-256(hashed-secret, JSON.stringify(transactionData + environment))	A unique hash which is generated using HMAC SHA-256 algorithm. This identifies that the webhook call is genuine and generated by UroPay. You need to check this signature before processing the webhook call at your end. Important: The secret should be sha512 hashed before using it. Check "Authentication" section.	For consistent signature, the transaction data should be sorted before generating the signature. For example: const sortedData = Object.fromEntries( Object.entries(data).sort(([a], [b]) => a.localeCompare(b)) ); const payload = {...sortedData, environment: environment};
+JSON object
+Following is the JSON object you will receive in the webhook call. from and vpa keys are optional and will contain null if not present.
+
+Every value is a STRING to keep it flexible. You need to typecase it to the required type at your end.
+
+IMPORTANT: The webhook call will happen more than once. First, it will happen as soon as your device receives the UPI credit SMS, and the second one will happen when you update the order with UPI Reference Number. Please handle multiple webhook calls accordingly.
+
+If you do not have UroPay Companion App installed, then the `amount` key will be `empty or 0`.
+
+{
+	"amount': "150.00",
+	"referenceNumber": "430686551035",
+	"from": "Gaurav Chandra",
+	"vpa": "abc@icici"
+}
+You can use referenceNumber key to match the payment in your system.
+
+Important: Your webhook URL must respond with HTTP STATUS 200 OK else that webhook call will be marked as FAILED. Also, you can define as many webhooks you want, and UroPay will call them in sequence.
+
+UROPAY_API_KEY=SB9B8HNQJXWLVA7I
+UROPAY_SECRET=CWTXAWD5STRVUY5D45CP7RN49S2ZBFW32PGDA5FB64H9K1S1UG
+UROPAY_UPI_ID=ayaansyed18@fam

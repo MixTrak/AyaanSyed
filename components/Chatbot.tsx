@@ -62,7 +62,7 @@ export default function Chatbot() {
       className="flex flex-col h-[400px] w-full max-w-sm rounded-2xl shadow-lg bg-gradient-to-b from-purple-800 to-purple-300 text-white overflow-hidden"
     >
       <div className="px-4 py-2 bg-slate-950 text-white text-sm font-medium border-b border-slate-700">
-      Gemini
+      Ayaan Syed
       </div>
 
       <div className="flex-1 overflow-y-auto p-3 space-y-2 text-sm">

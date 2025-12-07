@@ -6,6 +6,7 @@ import AboutSection from "@/components/app/AboutMe";
 import TechStackSection from "@/components/app/TechStack";
 import PreviousWorkSection from "@/components/app/Projects";
 import ContactSection from "@/components/app/Contact";
+import BuyMeCoffee from "@/components/app/BuyMeCoffee";
 
 export default function Home() {
   const techRef = useRef<HTMLDivElement>(null);
@@ -87,6 +88,7 @@ export default function Home() {
         handleSubmit={handleSubmit}
         loading={loading}
       />
+      <BuyMeCoffee />
     </div>
   );
 }
