@@ -110,7 +110,7 @@ export async function POST(req: Request) {
     }
 
     const completion = await openai.chat.completions.create({
-      model: "amazon/nova-2-lite-v1:free",
+      model: "xiaomi/mimo-v2-flash:free",
       messages: [
         { role: "system", content: info },
         { role: "user", content: input },
